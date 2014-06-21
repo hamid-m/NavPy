@@ -28,6 +28,24 @@ def input_check_Nx1(x):
     
     return x,_np.size(x)
 
+def input_check_Nx2(x):
+    x = np.atleast_2d(x)
+    theSize = np.shape(x)
+    
+    if(len(theSize)>1):
+        #1. Input must be of size N x 2
+        if ((theSize[0]!=2) & (theSize[1]!=2)):
+            raise ValueError('Not a N x 2 array')
+        #2. Make it into a Nx3 array
+        if (theSize[1]!=2):
+            x = x.T
+        N = x.shape[0]
+        #3. If N == 1, make it into a 1-D array
+        if (x.shape[0]==1):
+            x = x.reshape(x.shape[1])
+
+    return x,N
+    
 def input_check_Nx3(x):
     """
     Check x to be of dimension Nx3
