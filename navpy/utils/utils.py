@@ -29,8 +29,8 @@ def input_check_Nx1(x):
     return x,_np.size(x)
 
 def input_check_Nx2(x):
-    x = np.atleast_2d(x)
-    theSize = np.shape(x)
+    x = _np.atleast_2d(x)
+    theSize = _np.shape(x)
     
     if(len(theSize)>1):
         #1. Input must be of size N x 2
