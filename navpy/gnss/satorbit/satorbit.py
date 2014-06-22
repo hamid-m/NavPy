@@ -1,3 +1,9 @@
+"""
+Copyright (c) 2014 NavPy Developers. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be found in
+LICENSE.txt
+"""
+
 import numpy as np
 import navpy as _navpy
 import navpy.utils as _utils
@@ -64,7 +70,7 @@ class ephem_class:
         
         Adhika Lie, 06/21/2014
         """
-        ephem_array = _RINEX2array(ephem_file)
+        ephem_array = self._RINEX2array(ephem_file)
         ephem_array = ephem_array[ephem_array[:,0].argsort()]
         for i in xrange(0,ephem_array.shape[0]):
             prn = int(ephem_array[i,0]-1)
@@ -99,7 +105,7 @@ class ephem_class:
             
             self.iodc[prn].append(ephem_array[i,23])
 
-    def _RINEX2array(ephem_file):
+    def _RINEX2array(self,ephem_file):
         """
         Read Ephemeris File from RINEX file and convert it to numpy array
         """
