@@ -7,14 +7,18 @@ LICENSE.txt
 """
 
 import numpy as np
+import navpy.gnss as gnss
 
 class ac_class:
     """
     Aircraft Class
     """
     
-    def __init__(self,fname):
+    def __init__(self,fname=''):
         self._file = fname
+        self.imu = imu_class()
+        self.gps = gnss.rx_class()
+        self.airdata = airdata_class()
         
         
 class imu_class:
@@ -45,3 +49,25 @@ class imu_class:
         
     def get_mag(self):
         return np.array([self._hx, self._hy, self._hz])
+
+class airdata_class:
+    """
+    Air Data Class
+    """
+    def __init__(self):
+        self._ias = np.nan
+        self._alpha = np.nan
+        self._beta = np.nan
+    
+    def set_imu(self,v,alpha,beta):
+        self._ias, self._alpha, self._beta = v, alpha, beta
+    
+    def get_ias(self):
+        return self._ias
+    
+    def get_alpha(self):
+        return self._alpha
+        
+    def get_beta(self):
+        return self._beta
+    
